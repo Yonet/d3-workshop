@@ -8,10 +8,16 @@
 }
 
 
+
+text {
+  fill: white;
+  text-anchor: middle;
+}
+
 .chart text {
   fill: white;
   font: 10px sans-serif;
-  text-anchor: end;
+  text-anchor: middle;
 }
 
 </style>
@@ -20,12 +26,12 @@
 <script>
 
 //Our boring data
-var data = [4, 8, 15, 16, 23, 42];
+var data =[4, 8, 15, 16, 23, 42];
 
 //define the width as a variable so that you can use it to define multiple things and change it in one place if you need to
-var width = 1000,
+var width = window.innerWidth,
     barHeight = 20,
-    height = 800;
+    height = window.innerHeight;
 var color = d3.scale.category20();
 
 //our good old scale
@@ -55,18 +61,31 @@ d3.csv("popular_languages2014.csv", function(d) {
 var bar = chart.selectAll("g")
     .data(data)
   .enter().append("g")
-    .attr("transform", function(d, i) { return "translate(0," + i * 50 + ")"; });//
+    .attr("transform", function(d, i) { return "translate("+ Math.random() * 1000 +"," + Math.random() * 50 + d * 2 + ")"; });//
 
-//creates the rectangles
+//creates the circles
+
 bar.append("circle")
     .attr("r", function(d) { return d * 5; })
-    .attr("cx", function(d, i) { return Math.random() * 720 + d *2; })
+    // .attr("cx", function(d, i) { return Math.random() * 720 + d * 2; })
+    .attr('stroke', function(d) {return color(d)})
     .attr('fill', function(d) {return color(d)})
-    .attr("cy", function(d, i) { return Math.random() * 350 + d; });
+    .attr('fill-opacity', 0.5)
+    .attr("cy", function(d, i) { return  i * 20 + d * 2; })
+    .text(function(d){return d});
+
+// d3.selectAll('circle')
+bar.append('text')
+  .attr('fill', 'darkgray')
+  .attr('dy', '.9em')
+  .text(function(d){return d});
+
     
 
 
 //appends text
+
+
 
 
 </script>
