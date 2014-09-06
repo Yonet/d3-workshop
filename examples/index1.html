@@ -20,12 +20,12 @@ var data = [4, 8, 15, 16, 23, 42];
 
 
 ////iteration1...
-d3.select(".chart")
-  .selectAll("div")
-    .data(data)
-  .enter().append("div")
-    .style("width", function(data ) { return data * 20 + "px"; })
-    .text(function(data,i ) { return i; });
+// d3.select(".chart")
+//   .selectAll("div")
+//     .data(data)
+//   .enter().append("div")
+//     .style("width", function(data ) { return data * 20 + "px"; })
+//     .text(function(data,i ) { return i; });
 
 //NOTE: There is a gotcha with method chaining, however: while most operations return the same selection, some methods return a new one! For example, selection.append returns a new selection containing the new elements. This conveniently allows you to chain operations into the new elements.
 
@@ -40,15 +40,15 @@ d3.select(".chart")
 // barEnter.text(function(d) { return d; });
 
 ////iteration3...
-// var x = d3.scale.linear()
-//     .domain([0, d3.max(data)])
-//     .range([0, 840]);
+var x = d3.scale.linear()
+    .domain([0, d3.max(data)])
+    .range([0, 1040]);
 
-// d3.select(".chart")
-//   .selectAll("div")
-//     .data(data)
-//   .enter().append("div")
-//     .style("width", function(d) { return x(d) + "px"; })
-//     .text(function(d) { return d; });
+d3.select(".chart")
+  .selectAll("div")
+    .data(data)
+  .enter().append("div")
+    .style("width", function(d) { return x(d) + "px"; })
+    .text(function(d) { return d; });
 
 </script>
