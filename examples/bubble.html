@@ -15,10 +15,13 @@ var diameter = 960,
     format = d3.format(",d"),//formatting the %
     color = d3.scale.category20c();
 
+
+//layout
 var bubble = d3.layout.pack()
     .sort(null)
     .size([diameter, diameter])
     .padding(1.5);
+
 
 var svg = d3.select("body").append("svg")
     .attr("width", diameter)
