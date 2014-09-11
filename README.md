@@ -1,1 +1,1 @@
-D3.js introduction for NeoHack14/ Girl Develop It.
+D3.js introduction workshop Data Week + API World Conference 2014, San Francisco.
