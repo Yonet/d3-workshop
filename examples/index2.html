@@ -29,7 +29,7 @@ var chart = d3.select(".chart")
     .attr("height", height);
 
 d3.tsv("data.tsv", type, function(error, data) {
-  y.domain([0, d3.max(data, function(d) { return d.value; })]);//array of objects
+  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);//array of objects
 
 
   var barWidth = width / data.length;
@@ -41,19 +41,19 @@ d3.tsv("data.tsv", type, function(error, data) {
       //https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform
 
   bar.append("rect")
-      .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); })
+      .attr("y", function(d) { return y(d.frequency); })
+      .attr("height", function(d) { return height - y(d.frequency); })
       .attr("width", barWidth - 1);
 
   bar.append("text")
       .attr("x", barWidth / 2)
-      .attr("y", function(d) { return y(d.value) + 3; })//so it is on top
+      .attr("y", function(d) { return y(d.frequency) + 3; })//so it is on top
       .attr("dy", ".75em")//TODO .em
-      .text(function(d) { return d.value; });
+      .text(function(d) { return d.frequency; });
 });
 
 function type(d) {
-  d.value = +d.value; // coerce to number
+  d.frequency = +d.frequency;// coerce to number
   return d;
 }
 
